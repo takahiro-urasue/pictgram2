@@ -32,7 +32,7 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find_by(id: params[:id])
-    @topic.description = params[:description]
+    @topic.description = params[:topic][:description]
     @topic.save
     redirect_to("/topics/index")
   end
