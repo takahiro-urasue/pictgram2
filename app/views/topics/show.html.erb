@@ -2,8 +2,26 @@
   <div class="container">
     <div class="topics-show-item">
       <p>
-        <%= "idが「#{@id}」の投稿詳細画面です"%>
+        <%= @topic .description %>
       </p>
+
+      <% if Favorite.find_by(user_id:@current_user.id,topic_id:@topic.id) %>
+        <%= link_to("/favorites/#{@topic.id}/destroy", {method: "post"}) do %>
+          <span class="fa fa-heart like-btn-unfavorite"></span>
+        <% end %>
+      <% else %>
+        <%= link_to("/favorites/#{@topic.id}/create", {method: "post"}) do %>
+          <span class="fa fa-heart like-btn"></span>
+        <% end %>
+      <% end %>
+
+      <%= @likes_count %>
+
+      <div class="topic-menus">
+        <%= link_to("編集", "/topics/#{@topic.id}/edit") %>
+        <%= link_to("削除", "/topics/#{@topic.id}/destroy",{method:"post"}) %>
+
+      </div>
     </div>
   </div>
 </div>

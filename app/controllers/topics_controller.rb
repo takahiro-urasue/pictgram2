@@ -4,7 +4,8 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @id = params[:id]
+    @topic = Topic.find_by(id: params[:id])
+    @favorites_count = Favorite.where(topic_id: @topic.id).count
   end
 
   def new
@@ -19,10 +20,27 @@ class TopicsController < ApplicationController
       flash.now[:danger] = "投稿に失敗しました"
       render :new
     end
+  end
 
-    def create
-      redirect_to("/posts/index")
-    end
+  def create
+    redirect_to("/posts/index")
+  end
+
+  def edit
+    @topic = Topic.find_by(id: params[:id])
+  end
+
+  def update
+    @topic = Topic.find_by(id: params[:id])
+    @topic.description = params[:description]
+    @topic.save
+    redirect_to("/topics/index")
+  end
+
+  def destroy
+    @topic = Topic.find_by(id: params[:id])
+    @topic.destroy
+    redirect_to("/topics/index")
   end
 
 

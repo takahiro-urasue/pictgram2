@@ -1,0 +1,18 @@
+<div class="main topics-new">
+  <div class="container">
+    <h1 class="form-heading">編集する</h1>
+    <%= form_tag("/topics/#{@topic.id}/update") do %>
+      <%= text_field_tag(:search,
+          params[:search],
+          placeholder: "Search",
+          class: "form-control"
+      ) %>
+    <div class="form">
+      <div class="form-body">
+        <textarea neme="description"></textarea>
+        <input type="submit" value="保存">
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
