@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'users/new'
   get 'pages/index'
-  get 'pages/indx'
+  get 'pages/index'
   root 'pages#index'
   get 'pages/help'
   get "topics/index" => "topics#index"
