@@ -1,13 +1,13 @@
-<div class="main topics-new">
+<div class="topics-edit">
   <div class="container">
-    <h1 class="form-heading">編集する</h1>
+    <h1 class="form-heading">To edit</h1>
     <%= form_for @topic do |f| %>
 
     <div class="form">
       <div class="form-body">
         <%= f.label :description %>
         <%= f.text_area :description, class: 'form-control' %>
-        <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
+        <%= f.submit 'Post', class: 'btn btn-black btn-lg' %>
       </div>
     </div>
     <% end %>

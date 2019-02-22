@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     #binding.pry
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path, success:'登録が完了しました'
+      redirect_to root_path, success:'Registration has been completed'
     else
-      flash.now[:danger] = "登録に失敗しました"
+      flash.now[:danger] = "Signup failed"
       render :new
     end
   end

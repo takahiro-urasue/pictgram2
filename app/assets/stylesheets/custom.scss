@@ -80,8 +80,15 @@ h1, h2 {
 
     .form-group {
       margin-bottom: 20px;
+
+
     }
   }
+}
+
+.Log-in-navigation {
+  color: #f7f436;
+  font-size: 20px;
 }
 
 
@@ -91,6 +98,7 @@ h1, h2 {
   position: fixed;
   width: 100%;
   z-index: 10000;
+  font-size: 20px;
 }
 
 .navbar-transparent {
@@ -121,6 +129,8 @@ h1, h2 {
     color: #565656;
   }
 }
+
+
 
 .topic-new-wrapper {
   padding-top: 120px;
@@ -202,4 +212,9 @@ h1, h2 {
 .topics-show-item .fa {
   font-size: 16px;
   margin-right: 3px;
+}
+
+.topics-edit {
+  padding-top: 150px;
+  text-align: center;
 }
