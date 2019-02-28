@@ -9,10 +9,9 @@
             </h2>
 
             <%= link_to topic_path(id: topic.id), method: :get do %>
-            <% if topic.image.attached? %>
-             <%= image_tag topic.image %>
-           <% end %>
-            
+              <% if topic.image.attached? %>
+                <%= image_tag topic.image %>
+              <% end %>
             <% end %>
 
             <% if Favorite.find_by(user_id:current_user.id,topic_id:topic.id) %>
@@ -32,19 +31,19 @@
             <% end %>
             <%= topic.comments.count %>
 
-            <p class="topic-text">
-              <%= topic.description %>
-            </p>
+            <%= link_to topic_path(id: topic.id), method: :get do %>
+              <p class="topic-text">
+                <%= topic.description %>
+              </p>
+            <% end %>
             <% if topic.comments.count != 0 %>
                <h3 class="topic-text">Comments</h3>
              <% end %>
-             <% topic.comments.each do |comment| %>
+            <% topic.comments.each do |comment| %>
                <p class="topic-text">
                  <%= comment.description %>
                </p>
-             <% end %>
-
-
+            <% end %>
            </div>
         </div>
       </div>
