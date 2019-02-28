@@ -1,4 +1,5 @@
 class Topic < ApplicationRecord
+  has_one_attached :image
   validates :user_id, presence: true
   validates :description, presence: true
   validates :image, presence: true
@@ -6,7 +7,7 @@ class Topic < ApplicationRecord
   belongs_to :user
   has_many :favorite_users
 
-  mount_uploader :image, ImageUploader
+  # mount_uploader :image, ImageUploader
 
 
 
@@ -14,6 +15,6 @@ class Topic < ApplicationRecord
   has_many :favorites
   has_many :favorite_users, through: :favorites, source: 'user'
 
-  
+
 
 end

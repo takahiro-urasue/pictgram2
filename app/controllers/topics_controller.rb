@@ -13,9 +13,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-
     @topic = current_user.topics.new(topic_params)
-
     if @topic.save
       redirect_to topics_path, success: 'Successful submission'
     else
@@ -34,6 +32,7 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find_by(id: params[:id])
+    @topic.update params.require(:topic).permit(:comment, :image)
     @topic.description = params[:topic][:description]
     @topic.save
     redirect_to("/topics/index")
