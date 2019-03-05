@@ -1,6 +1,4 @@
 class CommentsController < ApplicationController
-
-
   def index
     @comments_topics = current_user.comments_topics
   end
@@ -12,19 +10,26 @@ class CommentsController < ApplicationController
   end
 
   def create
-
-    @comment = Comment.new(comment_params)
+    @comment = current_user.comments.new(comment_params)
     if @comment.save
-      redirect_to topics_path, success: 'Comment completed'
+      redirect_to topics_path, success: 'Successful submission'
     else
-      flash.now[:danger] = 'Posting comment failed'
-      render :new
+      redirect_to "/comments/new?topic_id=" + params[:comment][:topic_id], danger: "Posting failed"
     end
   end
+  #   @comment = current_user.comments.new(comment_params)
+  #   # Comment.new(comment_params)
+  #   if @comment.save
+  #    redirect_to topics_path, success: 'Comment completed'
+  #   else
+  #     # redirect_to topics_path, danger: 'Posting comment failed'
+  #     flash.now[:danger] = 'Posting comment failed'
+  #     render :new
+  #   end
+  # end
 
   private
   def comment_params
     params.require(:comment).permit(:user_id, :topic_id, :description)
   end
-
 end

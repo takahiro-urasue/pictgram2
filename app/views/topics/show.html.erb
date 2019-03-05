@@ -12,15 +12,23 @@
            <%= image_tag @topic.image %>
          <% end %>
 
-          <% if !@topic.favorite_users.include?(current_user) %>
-            <%= link_to favorites_path(topic_id: @topic.id), method: :post do %>
-            <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
-            <% end %>
-          <% end %>
+         <% if Favorite.find_by(user_id:current_user.id,topic_id:@topic.id) %>
+           <%= link_to("/favorites/#{@topic.id}/destroy", {method: "post"}) do %>
+             <span class="fa fa-heart favorite-btn-unfavorite"></span>
+           <% end %>
+         <% else %>
+           <%= link_to("/favorites/#{@topic.id}/create", {method: "post"}) do %>
+             <span class="fa fa-heart favorite-btn"></span>
+           <% end %>
+         <% end %>
 
-          <% link_to comments_path(topic_id: @topic.id), method: :post do %>
+         <%= @favorites_count %>
+
+
+          <%= link_to new_comment_path(topic_id: @topic.id), method: :get do %>
             <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
           <% end %>
+          <%= @topic.comments.count %>
 
           <p class="topic-text">
             <%= @topic.description %>
@@ -34,17 +42,6 @@
              </p>
            <% end %>
 
-           <% if Favorite.find_by(user_id:current_user.id,topic_id:@topic.id) %>
-             <%= link_to("/favorites/#{@topic.id}/destroy", {method: "post"}) do %>
-               <span class="fa fa-heart favorite-btn-unfavorite"></span>
-             <% end %>
-           <% else %>
-             <%= link_to("/favorites/#{@topic.id}/create", {method: "post"}) do %>
-               <span class="fa fa-heart favorite-btn"></span>
-             <% end %>
-           <% end %>
-
-           <%= @favorites_count %>
 
            <div class="topic-menus">
              <%= link_to("Edit", "/topics/#{@topic.id}/edit") %>
