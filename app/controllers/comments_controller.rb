@@ -6,7 +6,11 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @comment.topic_id = params[:topic_id]
-    @login_comment_id = current_user.id
+    if !current_user.nil?
+      @login_comment_id = current_user.id
+    end
+    @topic = Topic.find_by(id: params[:topic_id])
+    @favorites_count = Favorite.where(topic_id: params[:topic_id]).count
   end
 
   def create

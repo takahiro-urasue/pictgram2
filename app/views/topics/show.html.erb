@@ -10,7 +10,7 @@
 
           <% if @topic.image.attached? %>
            <%= image_tag @topic.image %>
-         <% end %>
+          <% end %>
 
          <% if Favorite.find_by(user_id:current_user.id,topic_id:@topic.id) %>
            <%= link_to("/favorites/#{@topic.id}/destroy", {method: "post"}) do %>

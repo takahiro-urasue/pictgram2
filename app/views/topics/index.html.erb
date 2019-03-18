@@ -14,17 +14,18 @@
               <% end %>
             <% end %>
 
-            <% if Favorite.find_by(user_id:current_user.id,topic_id:topic.id) %>
-              <%= link_to("/favorites/#{topic.id}/destroy", {method: "post"}) do %>
-                <span class="fa fa-heart favorite-btn-unfavorite"></span>
+            <% if !current_user.nil? %>
+              <% if Favorite.find_by(user_id:current_user.id,topic_id:topic.id) %>
+                <%= link_to("/favorites/#{topic.id}/destroy", {method: "post"}) do %>
+                  <span class="fa fa-heart favorite-btn-unfavorite"></span>
+                <% end %>
+              <% else %>
+                <%= link_to("/favorites/#{topic.id}/create", {method: "post"}) do %>
+                  <span class="fa fa-heart favorite-btn"></span>
+                <% end %>
               <% end %>
-            <% else %>
-              <%= link_to("/favorites/#{topic.id}/create", {method: "post"}) do %>
-                <span class="fa fa-heart favorite-btn"></span>
-              <% end %>
+              <%= topic.favorites.count %>
             <% end %>
-
-            <%= topic.favorites.count %>
 
             <%= link_to new_comment_path(topic_id: topic.id), method: :get do %>
               <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>

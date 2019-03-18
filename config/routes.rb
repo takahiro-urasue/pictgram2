@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :users
   resources :topics
   resources :comments
-  get 'comments/new/:topic_id' => 'comments#new'
+  # get 'comments/new/:topic_id' => 'comments#new'
 
 
   get 'favorites/index'

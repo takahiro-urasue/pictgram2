@@ -3,14 +3,63 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h1 class="text-center">Add comment</h1>
-        <%= form_for [@topic, @comment] do |f| %>
-          <div class="form-group">
+
+        <h2 class="topic-author">
+          <%= @topic.user.name %>
+        </h2>
+
+        <% if @topic.image.attached? %>
+         <%= image_tag @topic.image, class:'comment-image' %>
+        <% end %>
+
+        <div class="icons-left">
+         <% if !current_user.nil? %>
+           <% if Favorite.find_by(user_id:current_user.id,topic_id:@topic.id) %>
+             <%= link_to("/favorites/#{@topic.id}/destroy", {method: "post"}) do %>
+               <span class="fa fa-heart favorite-btn-unfavorite"></span>
+             <% end %>
+           <% else %>
+             <%= link_to("/favorites/#{@topic.id}/create", {method: "post"}) do %>
+               <span class="fa fa-heart favorite-btn"></span>
+             <% end %>
+           <% end %>
+
+           <%= @favorites_count %>
+        <% else %>
+            <%= link_to("/", {method: "get"}) do %>
+              <span class="fa fa-heart favorite-btn"></span>
+            <% end %>
+        <% end %>
+         <%= link_to new_comment_path(topic_id: @topic.id), method: :get do %>
+            <%= image_tag 'icons/comment.png', class: 'comment-icon' %>
+          <% end %>
+          <%= @topic.comments.count %>
+        </div>
+
+        <p class="topic-text">
+          <%= @topic.description %>
+        </p>
+        <% if @topic.comments.count != 0 %>
+           <h3 class="topic-text">Comments</h3>
+         <% end %>
+         <% @topic.comments.each do |comment| %>
+           <p class="topic-text">
+             <%= comment.description %>
+           </p>
+         <% end %>
+
+         <%= form_for [@comment] do |f| %>
+          <div class="form-group-comment">
           <%= f.hidden_field :topic_id, :value=> params[:topic_id] %>
           <%= f.hidden_field :user_id, :value=> @login_comment_id %>
-          <%= f.label :description %>
-          <%= f.text_area :description, class: 'form-control' %>
+          <% if !current_user.nil? %>
+            <%= f.label :description %>
+            <%= f.text_area :description, class: 'form-control' %>
+          <% end %>
           </div>
-          <%= f.submit 'Post', class: 'btn btn-black btn-block' %>
+          <% if !current_user.nil? %>
+            <%= f.submit 'Post', class: 'btn btn-black btn-block' %>
+          <% end %>
         <% end %>
       </div>
     </div>

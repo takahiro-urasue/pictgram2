@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to topics_path, success: 'Login succeeded'
+      redirect_to topics_path, success: 'ログインに成功しました'
     else
-      flash.now[:danger] = 'Login failed'
+      flash.now[:danger] = 'ログインに失敗しました'
       render :new
     end
   end
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to root_url, info: 'Logged out'
+    redirect_to root_url, info: 'ログアウトしました'
   end
 
   private
