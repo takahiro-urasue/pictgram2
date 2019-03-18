@@ -16,9 +16,9 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.new(comment_params)
     if @comment.save
-      redirect_to topics_path, success: 'Successful submission'
+      redirect_to topics_path, success: 'コメントしました'
     else
-      redirect_to "/comments/new?topic_id=" + params[:comment][:topic_id], danger: "Posting failed"
+      redirect_to "/comments/new?topic_id=" + params[:comment][:topic_id], danger: "コメントに失敗しました"
     end
   end
   #   @comment = current_user.comments.new(comment_params)
