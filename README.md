@@ -1,19 +1,11 @@
-<<<<<<< HEAD
-# pictgramについて
-=======
- # pictgramについて
->>>>>>> df14b5f07be751c1c91d89d25e653268853f25fb
+## pictgramについて
 ## URL　https://pure-thicket-66319.herokuapp.com/
 ## テストユーザー
 * テストメールアドレス = testtest@sample.com　
 * パスワード = 1234qwer　
 ## 技術内容
 * 言語:Ruby
-<<<<<<< HEAD
 * フレームワーク:Ruby on Rails
-=======
-* フレームワーク:Ruby on Rails 
->>>>>>> df14b5f07be751c1c91d89d25e653268853f25fb
 * DB:MySQL (開発環境)
 * PostgreSQL (本番環境)
 * バージョン管理:Git

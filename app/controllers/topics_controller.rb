@@ -37,12 +37,16 @@ class TopicsController < ApplicationController
     @topic = Topic.find_by(id: params[:id])
     @topic.update topic_params
     @topic.description = params[:topic][:description]
-    @topic.textbox = params[:topic][:textbox]
-    @topic.pulldown = params[:topic][:pulldown]
-    @topic.checkbox = params[:topic][:checkbox] ? "true" : "false"
-    @topic.radiobutton = params[:topic][:radiobutton]
-    @topic.save
-    redirect_to("/topics/index")
+    # @topic.textbox = params[:topic][:textbox]
+    # @topic.pulldown = params[:topic][:pulldown]
+    # @topic.checkbox = params[:topic][:checkbox] ? "true" : "false"
+    # @topic.radiobutton = params[:topic][:radiobutton]
+    if @topic.save
+      redirect_to topics_path, success: '投稿を編集しました'
+    else
+      flash.now[:danger] = "descriptionを入力して下さい"
+      render("topics/edit")
+    end
   end
 
   def destroy
