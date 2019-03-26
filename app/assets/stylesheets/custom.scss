@@ -58,13 +58,20 @@ h1, h2 {
   background-size: cover;
   background-color: #464646;
 
+
   .users-new-container {
-    padding-top: 60px;
+    padding-top: 120px;
+    text-align: center;
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
   }
+}
+
+.sign-in-navigation {
+  color: #fff;
+  font-size: 18px;
 }
 
 .users-new-wrapper2 {
@@ -81,14 +88,9 @@ h1, h2 {
     padding-top: 150px;
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
   }
-}
-
-.Log-in-navigation {
-  color: #fff;
-  font-size: 20px;
 }
 
 .alert {
@@ -164,6 +166,10 @@ h1, h2 {
       margin-left: 20px;
     }
   }
+}
+
+.topic-text-center {
+  margin-top: 120px;
 }
 
 .topics-show form {

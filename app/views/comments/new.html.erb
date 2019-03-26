@@ -40,7 +40,7 @@
           <%= @topic.description %>
         </p>
         <% if @topic.comments.count != 0 %>
-           <h3 class="topic-text">Comments</h3>
+           <h3 class="topic-text">コメント</h3>
          <% end %>
          <% @topic.comments.each do |comment| %>
            <p class="topic-text">
@@ -58,7 +58,7 @@
           <% end %>
           </div>
           <% if !current_user.nil? %>
-            <%= f.submit 'Post', class: 'btn btn-black btn-block' %>
+            <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
           <% end %>
         <% end %>
       </div>
