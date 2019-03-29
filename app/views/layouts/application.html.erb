@@ -40,25 +40,25 @@
                 <% end %>
               </li>
               <li>
-              <%= link_to logout_path, method: :delete do %>
-                <%= image_tag "icons/logout.png" %>
-              <% end %>
+                <%= link_to logout_path, method: :delete do %>
+                  <%= image_tag "icons/logout.png" %>
+                <% end %>
               </li>
-          <% else %>
-            <li>
-              <%= link_to new_user_path do %>
-                <%= image_tag "icons/register.png" %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to login_path do %>
-                <%= image_tag "icons/login.png" %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
+            <% else %>
+              <li>
+                <%= link_to new_user_path do %>
+                  <%= image_tag "icons/register.png" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to login_path do %>
+                  <%= image_tag "icons/login.png" %>
+                <% end %>
+              </li>
+        　　<% end %>
+          </ul>
+        </div>
+      </nav>
 
     <%= yield %>
 
