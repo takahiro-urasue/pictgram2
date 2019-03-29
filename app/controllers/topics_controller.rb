@@ -28,9 +28,10 @@ class TopicsController < ApplicationController
 
   def edit
     @topic = Topic.find_by(id: params[:id])
-    if @topic.checkbox == "true"
-      @topic.checkbox = true
-    end
+
+    # if @topic.checkbox == "true"
+    #   @topic.checkbox = true
+    # end
   end
 
   def update
