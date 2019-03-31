@@ -1,15 +1,18 @@
 class TopicsController < ApplicationController
+
   def index
     @topics = Topic.all.includes(:favorite_users,:comments)
   end
 
   def show
     @topic = Topic.find_by(id: params[:id])
+    @user = @topic.user
     @favorites_count = Favorite.where(topic_id: @topic.id).count
   end
 
   def new
     @topic = Topic.new
+    @topic = current_user.topics.build
   end
 
   def create
@@ -55,8 +58,6 @@ class TopicsController < ApplicationController
     @topic.destroy
     redirect_to("/topics/index")
   end
-
-
 
   private
   def topic_params

@@ -12,19 +12,17 @@
            <%= image_tag @topic.image %>
           <% end %>
 
-         <% if Favorite.find_by(user_id:current_user.id,topic_id:@topic.id) %>
+          <% if Favorite.find_by(user_id:current_user.id,topic_id:@topic.id) %>
            <%= link_to("/favorites/#{@topic.id}/destroy", {method: "post"}) do %>
              <span class="fa fa-heart favorite-btn-unfavorite"></span>
            <% end %>
-         <% else %>
+          <% else %>
            <%= link_to("/favorites/#{@topic.id}/create", {method: "post"}) do %>
              <span class="fa fa-heart favorite-btn"></span>
            <% end %>
-         <% end %>
+          <% end %>
 
-         <%= @favorites_count %>
-
-
+          <%= @favorites_count %>
           <%= link_to new_comment_path(topic_id: @topic.id), method: :get do %>
             <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
           <% end %>
@@ -35,22 +33,26 @@
           </p>
           <% if @topic.comments.count != 0 %>
              <h3 class="topic-text">Comments</h3>
-           <% end %>
-           <% @topic.comments.each do |comment| %>
-             <p class="topic-text">
-               <%= comment.description %>
-             </p>
-           <% end %>
+          <% end %>
+          <% @topic.comments.each do |comment| %>
+            <p class="topic-text">
+            <%= comment.description %>
+            </p>
+          <% end %>
 
 
-           <div class="topic-menus">
-             <%= link_to("編集", "/topics/#{@topic.id}/edit") %>
-             <%= link_to("削除", "/topics/#{@topic.id}/destroy",{method:"post"}) %>
+            <div class="topic-menus">
+              <% if logged_in? && @topic.user_id == current_user.id %>
 
-           </div>
-
+              <%= link_to '編集', edit_topic_path%>
+              <%= link_to '削除', topic_path(@topic), method: :delete,
+              data: {confirm: "本当にいいですか"} %>
+                <%# <%= link_to("編集", "/topics/#{@topic.id}/edit") %>
+                <%# <%= link_to("削除", "/topics/#{@topic.id}/destroy",{method:"post"}) %>
+              <% end %>
+            </div>
          </div>
-         <div class="col-md-3 col-md-offset-3"></div>
+        <div class="col-md-3 col-md-offset-3"></div>
       </div>
     </div>
   </div>
