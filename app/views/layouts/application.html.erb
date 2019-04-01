@@ -25,6 +25,11 @@
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
               <li>
+                <%= link_to user_path(current_user), method: :get do %>
+                  <%= image_tag "icons/register.png" %>
+                <% end %>
+              </li>
+              <li>
                 <%= link_to topics_path do %>
                   <%= image_tag "icons/topics.png" %>
                 <% end %>
