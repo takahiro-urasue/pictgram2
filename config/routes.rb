@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   get "topics/:id" => "topics#show"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-
-
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
@@ -21,7 +19,6 @@ Rails.application.routes.draw do
   resources :topics
   resources :comments
   # get 'comments/new/:topic_id' => 'comments#new'
-
 
   get 'favorites/index'
   get '/favorites', to: 'favorites#index'
@@ -36,7 +33,5 @@ Rails.application.routes.draw do
   get 'comments/new'
 
   get "users/:id/favorites" => "users#favorites"
-
-
-
+  get "users/id" => "users#show"
 end
