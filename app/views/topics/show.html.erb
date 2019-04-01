@@ -40,17 +40,15 @@
             </p>
           <% end %>
 
-
-            <div class="topic-menus">
-              <% if logged_in? && @topic.user_id == current_user.id %>
-
+          <div class="topic-menus">
+            <% if logged_in? && @topic.user_id == current_user.id %>
               <%= link_to '編集', edit_topic_path%>
               <%= link_to '削除', topic_path(@topic), method: :delete,
               data: {confirm: "本当にいいですか"} %>
                 <%# <%= link_to("編集", "/topics/#{@topic.id}/edit") %>
                 <%# <%= link_to("削除", "/topics/#{@topic.id}/destroy",{method:"post"}) %>
-              <% end %>
-            </div>
+            <% end %>
+          </div>
          </div>
         <div class="col-md-3 col-md-offset-3"></div>
       </div>
