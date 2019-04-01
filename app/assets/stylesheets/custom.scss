@@ -255,7 +255,38 @@ h1, h2 {
   text-align: left;
 }
 
+.profile-wrap{
+  margin:40px 0px;
+}
 
+.round-img{
+  position:absolute;
+  top: 150px;
+  right: 10px;
+  border-radius:50%;
+  width: 150px;
+  height: 150px;
+}
+
+.user-name {
+  margin-top: 150px;
+  position: relative;
+  left: 50px;
+}
+.user-mail {
+  margin-top: 20px;
+  position: relative;
+  left: 35px;
+}
+.edit-profile-btn {
+  margin: 15px 0 0 15px;
+  font-weight: bold;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 26px;
+  border-color: #dbdbdb;
+  font-size: 14px;
+}
 
 // .navbar-nav {
 //    display:table;
