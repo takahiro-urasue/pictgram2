@@ -269,14 +269,14 @@ h1, h2 {
 }
 
 .user-name {
-  margin-top: 150px;
+  margin-top: 157px;
   position: relative;
-  left: 50px;
+  left: 27px;
 }
 .user-mail {
-  margin-top: 20px;
   position: relative;
-  left: 35px;
+  top:1px;
+  left: 33px;
 }
 .edit-profile-btn {
   margin: 15px 0 0 15px;
@@ -286,6 +286,9 @@ h1, h2 {
   padding: 0 26px;
   border-color: #dbdbdb;
   font-size: 14px;
+  position: relative;
+  top :5px;
+  left: 10px;
 }
 
 // .navbar-nav {
