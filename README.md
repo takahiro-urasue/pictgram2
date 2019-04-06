@@ -1,7 +1,7 @@
 ## pictgramについて
 ## URL　https://pure-thicket-66319.herokuapp.com/
 ## テストユーザー
-* テストメールアドレス = testtest@sample.com　
+* テストメールアドレス = abcd@hoge.com
 * パスワード = 1234qwer　
 ## 技術内容
 * 言語:Ruby
