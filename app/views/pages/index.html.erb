@@ -1,3 +1,4 @@
+<% if logged_in? %>
 <div class="top-hero-wrapper text-center">
   <div class="container top-hero-container">
     <div class="row">
@@ -16,3 +17,75 @@
     </div>
   </div>
 </div>
+<% else %>
+<div class="top-hero-wrapper text-center">
+  <div class="container top-hero-container">
+    <div class="row">
+      <h1 class="text-white">Share happiness with you</h1>
+      <h2 class="text-white">Pictgram is a service that you can post photos.</h2>
+      <div class="col-md-offset-3 col-md-3" >
+        <% unless logged_in? %>
+          <%= link_to 'Sign in', new_user_path, class: 'btn btn-block btn-white' %>
+        <% end %>
+      </div>
+      <div class="col-md-3">
+        <% unless logged_in? %>
+          <%= link_to 'Log in', login_path, class: 'btn btn-block btn-white' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="topic-index-wrapper">
+  <div class="container">
+    <% @topics.each do |topic| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="topic-index-single">
+            <h2 class="topic-author">
+              <%= topic.user.name %>
+            </h2>
+
+            <%= link_to new_user_path(id: topic.id), method: :get do %>
+              <% if topic.image.attached? %>
+                <%= image_tag topic.image %>
+              <% end %>
+            <% end %>
+
+            <% if !current_user.nil? %>
+              <% if Favorite.find_by(user_id:current_user.id,topic_id:topic.id) %>
+                <%= link_to("/favorites/#{topic.id}/destroy", {method: "post"}) do %>
+                  <span class="fa fa-heart favorite-btn-unfavorite"></span>
+                <% end %>
+              <% else %>
+                <%= link_to("/favorites/#{topic.id}/create", {method: "post"}) do %>
+                  <span class="fa fa-heart favorite-btn"></span>
+                <% end %>
+              <% end %>
+              <%= topic.favorites.count %>
+            <% end %>
+
+            <%= link_to new_user_path(topic_id: topic.id), method: :get do %>
+              <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            <% end %>
+            <%= topic.comments.count %>
+
+            <p class="topic-text">
+              <%= topic.description %>
+            </p>
+
+            <% if topic.comments.count != 0 %>
+               <h3 class="topic-text">コメント</h3>
+             <% end %>
+            <% topic.comments.each do |comment| %>
+               <p class="topic-text">
+                 <%= comment.description %>
+               </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
