@@ -46,7 +46,7 @@
               <%= topic.user.name %>
             </h2>
 
-            <%= link_to new_user_path(id: topic.id), method: :get do %>
+            <%= link_to login_path(id: topic.id), method: :get do %>
               <% if topic.image.attached? %>
                 <%= image_tag topic.image %>
               <% end %>
@@ -65,7 +65,7 @@
               <%= topic.favorites.count %>
             <% end %>
 
-            <%= link_to new_user_path(topic_id: topic.id), method: :get do %>
+            <%= link_to login_path(topic_id: topic.id), method: :get do %>
               <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
             <% end %>
             <%= topic.comments.count %>
